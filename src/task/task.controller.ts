@@ -1,5 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, Req, UsePipes, ValidationPipe } from '@nestjs/common';
-import { Request } from 'express';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { TaskDTO } from './dto/task.dto';
 import { TaskService } from './task.service';
 
@@ -8,8 +15,10 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  @UsePipes(new ValidationPipe())
   create(@Body() taskDTO: TaskDTO) {
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => reject('Error en Petición'), 2000);
+    // });
     return this.taskService.create(taskDTO);
   }
 
